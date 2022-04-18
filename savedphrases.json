@@ -1,0 +1,16 @@
+{
+  "translations": [
+    {
+      "text": "Everyone should learn to code in JavaScript",
+      "translated": "To code in javascript,  everyone should learn",
+      "translation": "yoda",
+      "id": 1
+    },
+    {
+      "text": "I am going to go make a coffee",
+      "translated": "Going to go make a coffee,  I am",
+      "translation": "yoda",
+      "id": 2
+    }
+  ]
+}
