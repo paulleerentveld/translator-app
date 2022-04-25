@@ -3,7 +3,19 @@ form {
     margin: auto;
 }
 
+/* Auth0 Formatting */
+.hidden {
+   display: none;
+ }
+ 
+ label {
+   margin-bottom: 10px;
+   display: block;
+ }
 
+
+
+/* Table Formating for stacked on mobile view etc */
 .table-responsive-stack tr {
     display: -webkit-box;
     display: -ms-flexbox;

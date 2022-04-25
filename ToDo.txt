@@ -1,4 +1,3 @@
 
 - add images and logo
-
-- Login with oAuth, hide table etc until logged in. 
+- Hide buttons etc when not logged in

@@ -41,6 +41,18 @@
       "translated": "Bello nog ka am a minion",
       "translation": "minion",
       "id": 18
+    },
+    {
+      "text": "Mother of dragons",
+      "translated": "Mai ki dragons",
+      "translation": "dothraki",
+      "id": 19
+    },
+    {
+      "text": "Hello world!, I am alive",
+      "translated": "Ahoy world!, I be alive",
+      "translation": "pirate",
+      "id": 20
     }
   ]
 }
