@@ -1,27 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     getTableData();
-
 })
 
 //Translation Function, input is text from form then outputs to DOM and has Save button
 function translateData(type,input) {
     //Live fetch, limited to 5 requests per hour
     fetch(`https://api.funtranslations.com/translate/${type}.json?text=${input}`) 
-
-    //Local test version using saved local data so just dummy data
-    //fetch(`http://localhost:3000/translations/1`) 
         .then((response) => {
         response
         .json()
         .then((data) => {
             let outputText = data.contents.text;
-            //let outputText = data.text;
             let outputTranslated = data.contents.translated;
-            //let outputTranslated = data.translated;
             let outputTranslation = data.contents.translation;
-            //let outputTranslation = data.translation;
-            //console.log(data);
             //Output to DOM
             //Set image in Coloumn1 
             let imageCol = document.getElementById("col-img");
@@ -42,10 +33,8 @@ function translateData(type,input) {
             outputCol.append(translatedHtml,saveBtnHtml);
             saveBtnHtml.setAttribute('id','saveBtn');
             saveBtnHtml.classList.add("btn","btn-primary");
-
             //save translation button
             saveBtnHtml.addEventListener('click', function() {saveLocally(outputText, outputTranslated, outputTranslation)});
-
         })
         .catch(function(err) {
             console.log('Error: ' + err);
@@ -53,8 +42,6 @@ function translateData(type,input) {
         
     })
 }
-
-
 
 //Post local data
 function saveLocally(text, translated, translation) {
@@ -77,7 +64,6 @@ function saveLocally(text, translated, translation) {
           });
 }
 
-
 //On Submit listener and call translation function with text as input
 const inputForm = document.getElementById("inputForm");
 inputForm.addEventListener('submit', function(event) {
@@ -85,9 +71,7 @@ inputForm.addEventListener('submit', function(event) {
     text=event.target.elements.inputText.value;
     type=event.target.elements.tranlationType.value;
     translateData(type,text);
-    
 })
-
 
 //Populate Table from local Data
 function getTableData() {
@@ -113,7 +97,7 @@ function getTableData() {
     })
 }
 
-//Populate edit form when click edit button
+//Populate edit form in modal when click edit button
 function editForm(id) {
     fetch(`http://localhost:3000/translations/${id}`) 
         .then((response) => {
@@ -167,7 +151,6 @@ function editLocalData(form) {
         .then((json) => console.log(json))
         .then (alert(`The following data has been modified \r\n \r\n ID: ${dataId} \r\n Text: ${text} \r\n Translated Text: ${translated}`));
 } 
-
 
 //Delete row of local data
 function delRow(id) {

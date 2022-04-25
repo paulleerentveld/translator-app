@@ -1,6 +1,4 @@
-- Add other translators to translate function and to form to allow selecting which one to translate
+
 - add images and logo
-- cleanup page and add some seperation
-- Make table stack when on mobile etc
-- Other responsive changes?
+
 - Login with oAuth, hide table etc until logged in. 
