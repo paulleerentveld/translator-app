@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 //Translation Function, input is text from form then outputs to DOM and has Save button
-function translateData(input) {
+function translateData(type,input) {
     //Live fetch, limited to 5 requests per hour
-    fetch(`https://api.funtranslations.com/translate/yoda.json?text=${input}`) 
+    fetch(`https://api.funtranslations.com/translate/${type}.json?text=${input}`) 
 
     //Local test version using saved local data so just dummy data
     //fetch(`http://localhost:3000/translations/1`) 
@@ -21,18 +21,31 @@ function translateData(input) {
             //let outputTranslated = data.translated;
             let outputTranslation = data.contents.translation;
             //let outputTranslation = data.translation;
-            console.log(data);
+            //console.log(data);
             //Output to DOM
-            document.getElementById("outputArea").innerHTML = `
-            <p>Text: ${outputText}</p>
-            <p>Translated: ${outputTranslated}</p>
-            <p>Translation Type: ${outputTranslation}</p>
-            <button type="button" class="btn btn-primary" id="saveBtn" onclick="saveLocally('${outputText}','${outputTranslated}','${outputTranslation}')">Save Translation</button>
-            `;
-            getTableData();
+            //Set image in Coloumn1 
+            let imageCol = document.getElementById("col-img");
+            imageCol.innerHTML = `<img class="img-fluid filter-image" src="/img/${type}.jpg" alt="${type}" title="${type}"></img>`;
+            //Add input text and type in Column2
+            let inputCol = document.getElementById("col-input");
+            let textHtml = document.createElement('p');
+            let translationTypeHtml = document.createElement('p');
+            translationTypeHtml.innerHTML = `Translation Type: ${outputTranslation}`;
+            textHtml.innerHTML = `Text: ${outputText}`;
+            inputCol.append(textHtml,translationTypeHtml);
+            //Add Translation Text and save button to Column3
+            let outputCol = document.getElementById("col-output");
+            let translatedHtml = document.createElement('p');
+            let saveBtnHtml = document.createElement('button');
+            translatedHtml.innerHTML = `Translated: ${outputTranslated}`;
+            saveBtnHtml.innerHTML = `Save Translation`;
+            outputCol.append(translatedHtml,saveBtnHtml);
+            saveBtnHtml.setAttribute('id','saveBtn');
+            saveBtnHtml.classList.add("btn","btn-primary");
+
             //save translation button
-            //const saveButton = document.getElementById("saveBtn");
-            //saveButton.addEventListener('click', saveLocally(outputText, outputTranslated, outputTranslation));
+            saveBtnHtml.addEventListener('click', function() {saveLocally(outputText, outputTranslated, outputTranslation)});
+
         })
         .catch(function(err) {
             console.log('Error: ' + err);
@@ -41,13 +54,15 @@ function translateData(input) {
     })
 }
 
+
+
 //Post local data
 function saveLocally(text, translated, translation) {
     fetch("http://localhost:3000/translations", {
         method: 'POST',
         body: JSON.stringify({
             "text": text,
-            "translated": translated,
+            "translated": `${translated}`,
             "translation": translation,
         }),
         headers: {
@@ -56,12 +71,11 @@ function saveLocally(text, translated, translation) {
         },
         })
         .then((response) => response.json())
-        .then((json) => console.log(json))
+        //.then((json) => console.log(json))
         .catch(function(err) {
             console.log('Error: ' + err);
           });
 }
-
 
 
 //On Submit listener and call translation function with text as input
@@ -69,7 +83,9 @@ const inputForm = document.getElementById("inputForm");
 inputForm.addEventListener('submit', function(event) {
     event.preventDefault();
     text=event.target.elements.inputText.value;
-    translateData(text);
+    type=event.target.elements.tranlationType.value;
+    translateData(type,text);
+    
 })
 
 
@@ -85,11 +101,11 @@ function getTableData() {
             let x ='';
             data.forEach((element) => {
                 x += "<tr>"
-                x += `<th scope="row">${element.id}</th>`
+                x += `<td>${element.id}</td>`
                 x += `<td>${element.text}</td>`
                 x += `<td>${element.translated}</td>`
                 x += `<td>${element.translation}</td>`
-                x += `<td><button class='btn editBtn' onclick="editForm('${element.id}')">Edit</button></td>`
+                x += `<td><button class='btn btn-primary me-md-2 editBtn' onclick="editForm('${element.id}')" data-bs-toggle="modal" data-bs-target="#modal-edit">Edit</button><button class='btn btn-danger me-md-2 delBtn' onclick="delRow('${element.id}')">Delete</button></td>`
                 x += "</tr>"
             });
             tableBody.insertAdjacentHTML("beforeend", x);
@@ -131,7 +147,7 @@ function editForm(id) {
     })
 }
 
-
+//Post edited data from edit form
 function editLocalData(form) {
     form.action = "#";
     let dataId = form.dataId.value;
@@ -153,4 +169,15 @@ function editLocalData(form) {
 } 
 
 
-
+//Delete row of local data
+function delRow(id) {
+    fetch(`http://localhost:3000/translations/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json))
+        .then (alert(`The following data has been deleted \r\n ID: ${id}`));
+}

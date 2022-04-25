@@ -8,9 +8,45 @@
     },
     {
       "text": "I am going to go make a coffee",
-      "translated": "Going to go make a coffee,  I am",
+      "translated": "To make coffee going,  I am",
       "translation": "yoda",
       "id": 2
+    },
+    {
+      "text": "hello world",
+      "translated": "Bello globo",
+      "translation": "minion",
+      "id": 4
+    },
+    {
+      "text": "hoist the colors",
+      "translated": "hoist th' colors",
+      "translation": "pirate",
+      "id": 14
+    },
+    {
+      "text": "hello world",
+      "translated": "G'day world",
+      "translation": "australian",
+      "id": 15
+    },
+    {
+      "text": "Hi my name is Paul in Vulcan",
+      "translated": "Tonk'peh t'nash-veh ahm nam-tor paul svi' vuhlkansu",
+      "translation": "vulcan",
+      "id": 16
+    },
+    {
+      "text": "Hello world my name is Hodor and I like to hold the door",
+      "translated": "Hodor hodor hodor hodor hodor hodor hodor hodor hodor hodor hodor hodor hodor hodorrrr",
+      "translation": "hodor",
+      "id": 17
+    },
+    {
+      "text": "Hello Kim I am a minion",
+      "translated": "Bello nog ka am a minion",
+      "translation": "minion",
+      "id": 18
     }
   ]
 }
