@@ -1,8 +1,6 @@
 //Auth0 Stuff
 let auth0 = null;
-
 const fetchAuthConfig = () => fetch("/auth_config.json");
-
 const configureClient = async () => {
     const response = await fetchAuthConfig();
     const config = await response.json();
@@ -13,34 +11,25 @@ const configureClient = async () => {
     });
   };
 
-
 window.onload = async () => {
-    await configureClient();
-
+  await configureClient();
   updateUI();
-
   const isAuthenticated = await auth0.isAuthenticated();
-
   if (isAuthenticated) {
     // show the gated content
     return;
   }
-
   // NEW - check for the code and state parameters
   const query = window.location.search;
   if (query.includes("code=") && query.includes("state=")) {
 
     // Process the login state
     await auth0.handleRedirectCallback();
-    
     updateUI();
-
     // Use replaceState to redirect the user away and remove the querystring parameters
     window.history.replaceState({}, document.title, "/");
   }
-
 };
-
 
 const updateUI = async () => {
   const isAuthenticated = await auth0.isAuthenticated();
@@ -48,16 +37,17 @@ const updateUI = async () => {
   document.getElementById("btn-logout").disabled = !isAuthenticated;
   document.getElementById("btn-login").disabled = isAuthenticated;
 
-  // NEW - add logic to show/hide gated content after authentication
+  // NEW - add logic to show/hide table and buttons, and only allow loading table data if authenticated
   if (isAuthenticated) {
     document.getElementById("table-container").classList.remove("hidden");
     document.getElementById("nav-saved-translations").classList.remove("hidden");
+    //Load Table data only if Authenticated
+    getTableData();
 
   } else {
     document.getElementById("table-container").classList.add("hidden");
     document.getElementById("nav-saved-translations").classList.add("hidden");
   }
-
 };
 
 const login = async () => {
@@ -66,7 +56,6 @@ const login = async () => {
     });
   };
 
-
   const logout = () => {
     auth0.logout({
       returnTo: window.location.origin
@@ -74,17 +63,14 @@ const login = async () => {
   };
 
 
-
-
-
-//Load table
+//Load table - Old method. Now doing through Auth0 checks above
 document.addEventListener('DOMContentLoaded', () => {
-    getTableData();
+//    getTableData();
 })
 
 //Translation Function, input is text from form then outputs to DOM and has Save button
 function translateData(type,input) {
-    //Live fetch, limited to 5 requests per hour
+    //Live fetch, **Note limited to 5 requests per hour
     fetch(`https://api.funtranslations.com/translate/${type}.json?text=${input}`) 
         .then((response) => {
         response
@@ -108,13 +94,17 @@ function translateData(type,input) {
             let outputCol = document.getElementById("col-output");
             let translatedHtml = document.createElement('p');
             let saveBtnHtml = document.createElement('button');
-            translatedHtml.innerHTML = `Translated: ${outputTranslated}`;
+            translatedHtml.innerHTML = `"${outputTranslated}"`;
             saveBtnHtml.innerHTML = `Save Translation`;
             outputCol.append(translatedHtml,saveBtnHtml);
+            translatedHtml.setAttribute('id','translatedOutput');
             saveBtnHtml.setAttribute('id','saveBtn');
-            saveBtnHtml.classList.add("btn","btn-primary");
-            //save translation button
+            saveBtnHtml.classList.add("btn","btn-primary","mt-3");
+            //Save translation button
             saveBtnHtml.addEventListener('click', function() {saveLocally(outputText, outputTranslated, outputTranslation)});
+            //Show Output Container
+            let outputContainer = document.getElementById("output-container");
+            outputContainer.classList.remove("d-none");
         })
         .catch(function(err) {
             console.log('Error: ' + err);
@@ -144,7 +134,7 @@ function saveLocally(text, translated, translation) {
           });
 }
 
-//On Submit listener and call translation function with text as input
+//Translation Form on Submit listener
 const inputForm = document.getElementById("inputForm");
 inputForm.addEventListener('submit', function(event) {
     event.preventDefault();

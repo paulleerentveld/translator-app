@@ -1,5 +1,4 @@
 form {
-    width: 90%;
     margin: auto;
 }
 
@@ -13,6 +12,36 @@ form {
    display: block;
  }
 
+ /* Image size and position */
+ img {
+   object-fit: fill;
+   position: relative;
+   top: 50%;
+   transform: translateY(-50%);
+   min-width: 200px;
+ }
+
+ /* Buttons */
+table button {
+   margin-bottom: 5px;
+   margin-right: 5px;
+   width: 75px;
+}
+
+#col-output button {
+   margin-bottom: 10px;
+}
+
+/* Font and Text */
+#translatedOutput {
+   font-family: cursive;
+   font-size: xx-large;
+   font-style: italic;
+}
+
+h3 {
+   text-decoration: underline;
+}
 
 
 /* Table Formating for stacked on mobile view etc */

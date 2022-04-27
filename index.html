@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./style/style.css">
     <title>Document</title>
 </head>
+<!-- Navbar Section -->
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light pb-2 fixed-top">
         <div class="container-fluid">
@@ -26,7 +27,7 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Login
+                  Account
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><button class="dropdown-item" id="btn-login" disabled="true" onclick="login()">Log in</button></li>
@@ -39,12 +40,11 @@
       </nav>
 </header>
 <body class="pt-5">
-
-  
-     
+<!-- Input Form Section -->     
   <div class="container mb-5 pt-5" id="translate-form-container">
       <form id="inputForm">
         <div class="mb-3">
+          <label for="tranlationType" class="form-label">Translator Type</label>
           <select class="form-select form-select mb-3" aria-label=".form-select-lg example" id="tranlationType">
             <option selected>Pick the type of translator</option>
             <option value="yoda">Yoda</option>
@@ -62,83 +62,71 @@
             <label for="inputText" class="form-label">Phrase to Translate</label>
             <input type="text" name="inputText" class="form-control" id="inputText" aria-describedby="translateInput" placeholder="Enter the phrase you want to be translated">
           </div>
-          <div class="mb-3 form-check d-none">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
-       
-
-  <div class="container">
-
-
-    </div>
-
-  <div class="container mb-5">
-    <div class="row">
-      <div class="col" id="col-img">
-        
+<!-- Translated Output Section -->
+<div class="container d-none" id="output-container">
+  <div class="container-fluid mb-5">
+    <div class="row gap-3 text-center">
+      <div class="col bg-light border rounded-3" id="col-img">
       </div>
-      <div class="col" id="col-input">
-        
+      <div class="col bg-light border rounded-3" id="col-input">
+        <h3>Input</h3>
       </div>
-      <div class="col" id="col-output">
-        
+      <div class="col bg-light border rounded-3" id="col-output">
+        <h3>Output</h3>
       </div>
     </div>
   </div>
+</div>
 
-
-
-
-
-      <div class="container hidden" id="table-container">
-
-
-
-        <!-- Edit form Modal-->
-        <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-              <div class="modal-header">
-              <h5 class="modal-title" id="EditModalLabel">Edit Form</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div class="container">
-                  <div id="editForm">
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
+<!-- Local Saved Table Section -->
+  <div class="container hidden" id="table-container">
+    <!-- Edit form Modal-->
+    <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="EditModalLabel">Edit Form</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+          <div class="modal-body">
+            <div class="container">
+              <div id="editForm">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
       </div>
-
-        <table class="table table-striped table-responsive-stack" id="saveTable">
-          <thead class="thead-dark">
-            <tr>
-              <th>id#</th>
-              <th>OriginalText</th>
-              <th>TranslatedText</th>
-              <th>TranslationType</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody">
-
-          </tbody>
-        </table>
       </div>
-
+  </div>
+  <!-- Table -->
+    <table class="table table-striped table-responsive-stack" id="saveTable">
+      <thead class="thead-dark">
+        <tr>
+          <th>id#</th>
+          <th>OriginalText</th>
+          <th>TranslatedText</th>
+          <th>TranslationType</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+  </div>
+  <!-- Scripts -->
+    <!-- Auth0 -->
     <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
+    <!-- JQuery for Table Stacking -->
     <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- My Scripts -->
     <script src="./index.js"></script>
     <script src="./table-mobile.js"></script>
 </body>

@@ -14,7 +14,7 @@
     },
     {
       "text": "hello world",
-      "translated": "Bello globo",
+      "translated": "Bello globo bell",
       "translation": "minion",
       "id": 4
     },
@@ -53,6 +53,18 @@
       "translated": "Ahoy world!, I be alive",
       "translation": "pirate",
       "id": 20
+    },
+    {
+      "text": "It is not logical to not learn JavaScript",
+      "translated": "Ish-veh nam-tor ri olozhikaik tor ri oren-tor javascript",
+      "translation": "vulcan",
+      "id": 21
+    },
+    {
+      "text": "All men must die",
+      "translated": "Valar morghūlis",
+      "translation": "valyrian",
+      "id": 22
     }
   ]
 }
