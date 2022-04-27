@@ -37,16 +37,21 @@ const updateUI = async () => {
   document.getElementById("btn-logout").disabled = !isAuthenticated;
   document.getElementById("btn-login").disabled = isAuthenticated;
 
-  // NEW - add logic to show/hide table and buttons, and only allow loading table data if authenticated
+  // If authenticated - add logic to show/hide table and buttons, show logout button, fetch table data
   if (isAuthenticated) {
     document.getElementById("table-container").classList.remove("hidden");
     document.getElementById("nav-saved-translations").classList.remove("hidden");
+    document.getElementById("btn-logout").classList.remove("hidden");
+    document.getElementById("btn-login").classList.add("hidden");
     //Load Table data only if Authenticated
     getTableData();
 
+    //Else if not Authenticated - hide buttons and show login button and do not fetch table data
   } else {
     document.getElementById("table-container").classList.add("hidden");
     document.getElementById("nav-saved-translations").classList.add("hidden");
+    document.getElementById("btn-logout").classList.add("hidden");
+    document.getElementById("btn-login").classList.remove("hidden");
   }
 };
 
