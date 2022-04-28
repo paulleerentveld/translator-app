@@ -1,6 +1,3 @@
-form {
-    margin: auto;
-}
 
 /* Auth0 Formatting */
 .hidden {
@@ -30,7 +27,6 @@ form {
    display: block;
    margin-left: auto;
    margin-right: auto;
-   
  }
 
  /* Buttons */
@@ -104,4 +100,3 @@ h3 {
      }
   }
  
-  

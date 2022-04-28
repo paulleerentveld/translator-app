@@ -145,6 +145,7 @@ function translateData(type,input) {
         })
         .catch(function(err) {
             console.log('Error: ' + err);
+            alert('Error: ' + err);
           });
         
     })
@@ -168,6 +169,7 @@ function saveLocally(text, translated, translation) {
         //.then((json) => console.log(json))
         .catch(function(err) {
             console.log('Error: ' + err);
+            alert('Error: ' + err);
           });
 }
 
@@ -201,6 +203,10 @@ function getTableData() {
             });
             tableBody.insertAdjacentHTML("beforeend", x);
     })
+    .catch(function(err) {
+      console.log('Error: ' + err);
+      alert('Error: ' + err);
+    });
     })
 }
 
