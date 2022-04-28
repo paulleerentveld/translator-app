@@ -26,14 +26,54 @@
               </li>
             </ul>
             <div class="d-flex">
-              <button class="btn btn-primary hidden" id="btn-login" disabled="true" onclick="login()">Log in</button>
-              <button class="btn btn-secondary hidden" id="btn-logout" disabled="true" onclick="logout()">Log out</button>
+              <!-- <button class="btn btn-primary hidden" id="btn-login" disabled="true" onclick="login()">Log in</button>
+              <button class="btn btn-secondary hidden" id="btn-logout" disabled="true" onclick="logout()">Log out</button> -->
+            </div>
+            <div class="dropdown navbar-nav ms-auto" id="profile-menu">
+              <a href="#" class="d-inline-flex link-dark text-decoration-none user-action" id="profile-logout" data-bs-toggle="dropdown" aria-expanded="false">
+                <p class="hidden me-2" id="profile-p-logout">Sign-in</p><img src="./img/profile-default.jpg" alt="signedout" width="32px" height="32px" class="rounded-circle hidden" id="profile-img-logout">
+                <p class="hidden me-2" id="profile-p-login"></p><img src="" alt="profileimage" width="32px" height="32px" class="rounded-circle hidden" id="profile-img-login">
+                </a>
+              <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-profile">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li class="dropdown-item hidden" id="btn-login" disabled="true" onclick="login()">Log in</li>
+                <li class="dropdown-item hidden" id="btn-logout" disabled="true" onclick="logout()">Log out</li>
+              </ul>
             </div>
           </div>
 
 
         </div>
       </nav>
+
+  <!-- Profile Modal-->
+  <div class="modal fade" id="modal-profile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="profileModalLabel">User Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div id="profileContainer">
+              <h6>Full Name:</h6><p class="profileText" id="profileFullName"></p>
+              <h6>Email Address:</h6><p class="profileText" id="profileEmail"></p>
+              <h6>Auth Method</h6><p class="profileText" id="profileMethod"></p>
+              <h6>Token:</h6><p class="profileText" id="profileToken"></p>
+              <h6>Profile Image</h6><img src="" alt="profileimage" width="200px" height="200px" class="rounded-circle" id="profileImage">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+
 </header>
 <body class="pt-5">
 <!-- Input Form Section -->     
@@ -61,6 +101,7 @@
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+
 
 <!-- Translated Output Section -->
 <div class="container d-none" id="output-container">

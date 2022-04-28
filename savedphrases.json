@@ -65,6 +65,12 @@
       "translated": "Valar morghūlis",
       "translation": "valyrian",
       "id": 22
+    },
+    {
+      "text": "I think I have finished this app",
+      "translated": "I have finished this app, I think",
+      "translation": "yoda",
+      "id": 23
     }
   ]
 }

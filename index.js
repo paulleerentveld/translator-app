@@ -33,6 +33,16 @@ window.onload = async () => {
 
 const updateUI = async () => {
   const isAuthenticated = await auth0.isAuthenticated();
+  const profileDiv = document.getElementById("profile-menu");
+  const imgLogout = document.getElementById('profile-img-logout');
+  const pLogout = document.getElementById('profile-p-logout');
+  const imgLogin = document.getElementById('profile-img-login');
+  const pLogin = document.getElementById('profile-p-login');
+  const profileFullName = document.getElementById('profileFullName');
+  const profileEmail = document.getElementById('profileEmail');
+  const profileToken = document.getElementById('profileToken');
+  const profileMethod = document.getElementById('profileMethod');
+  const profileImage = document.getElementById('profileImage');
 
   document.getElementById("btn-logout").disabled = !isAuthenticated;
   document.getElementById("btn-login").disabled = isAuthenticated;
@@ -43,17 +53,39 @@ const updateUI = async () => {
     document.getElementById("nav-saved-translations").classList.remove("hidden");
     document.getElementById("btn-logout").classList.remove("hidden");
     document.getElementById("btn-login").classList.add("hidden");
+
+    imgLogout.classList.add('hidden');
+    pLogout.classList.add('hidden');
+    imgLogin.classList.remove('hidden');
+    pLogin.classList.remove('hidden');
+
+    //****************Get User Profile data - To be completed**************
+    const user = await auth0.getUser();
+    const token = await auth0.getTokenSilently();
+    pLogin.innerText = user.name;
+    imgLogin.setAttribute('src',user.picture);
+    profileFullName.innerText = user.name;
+    profileEmail.innerText = user.email;
+    profileToken.innerText = token;
+    profileMethod.innerText = user.sub;
+    profileImage.setAttribute('src',user.picture);
+
     //Load Table data only if Authenticated
     getTableData();
-
+    
     //Else if not Authenticated - hide buttons and show login button and do not fetch table data
   } else {
     document.getElementById("table-container").classList.add("hidden");
     document.getElementById("nav-saved-translations").classList.add("hidden");
     document.getElementById("btn-logout").classList.add("hidden");
     document.getElementById("btn-login").classList.remove("hidden");
+    imgLogout.classList.remove('hidden');
+    pLogout.classList.remove('hidden');
+    imgLogin.classList.add('hidden');
+    pLogin.classList.add('hidden');
   }
 };
+
 
 const login = async () => {
     await auth0.loginWithRedirect({

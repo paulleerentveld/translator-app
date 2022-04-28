@@ -1,4 +1,7 @@
 
+- Show logged in User's name above login buttons. 
+
+
 - Finish other lab projects in modules
 - Video 
 - Blog
