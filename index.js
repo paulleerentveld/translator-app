@@ -56,6 +56,7 @@ const updateUI = async () => {
     document.getElementById('profile-btn').classList.remove("hidden");
     document.getElementById('profile-divider').classList.remove("hidden");
     
+    
     imgLogout.classList.add('hidden');
     pLogout.classList.add('hidden');
     imgLogin.classList.remove('hidden');
@@ -81,8 +82,6 @@ const updateUI = async () => {
     document.getElementById("nav-saved-translations").classList.add("hidden");
     document.getElementById("btn-logout").classList.add("hidden");
     document.getElementById("btn-login").classList.remove("hidden");
-    //document.getElementById('profile-btn').classList.add("hidden");
-    //document.getElementById('profile-divider').classList.add("hidden");
     imgLogout.classList.remove('hidden');
     pLogout.classList.remove('hidden');
     imgLogin.classList.add('hidden');
@@ -206,6 +205,8 @@ function getTableData() {
                 x += "</tr>"
             });
             tableBody.insertAdjacentHTML("beforeend", x);
+            ResponsiveCellHeaders("saveTable");
+            
     })
     .catch(function(err) {
       console.log('Error: ' + err);
@@ -280,4 +281,35 @@ function delRow(id) {
         .then((response) => response.json())
         .then((json) => console.log(json))
         .then (alert(`The following data has been deleted \r\n ID: ${id}`));
+}
+
+//Stack Table
+function ResponsiveCellHeaders(elmID) {
+  try {
+    var THarray = [];
+    var table = document.getElementById(elmID);
+    var ths = table.getElementsByTagName("th");
+    for (var i = 0; i < ths.length; i++) {
+      var headingText = ths[i].innerHTML;
+      THarray.push(headingText);
+    }
+    var styleElm = document.createElement("style"),
+      styleSheet;
+    document.head.appendChild(styleElm);
+    styleSheet = styleElm.sheet;
+    for (var i = 0; i < THarray.length; i++) {
+      styleSheet.insertRule(
+        "#" +
+          elmID +
+          " td:nth-child(" +
+          (i + 1) +
+          ')::before {content:"' +
+          THarray[i] +
+          ': ";}',
+        styleSheet.cssRules.length
+      );
+    }
+  } catch (e) {
+    console.log("ResponsiveCellHeaders(): " + e);
+  }
 }

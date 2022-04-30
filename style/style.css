@@ -59,6 +59,13 @@ h3 {
 }
 
 /* Table Formating for stacked on mobile view etc */
+
+
+#saveTable td::before {
+    display: none;
+
+}
+
 .table-responsive-stack tr {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -92,6 +99,16 @@ h3 {
         border-bottom: 3px solid #ccc;
         display:block;
      }
+     .thead-dark {
+        display: none;
+     }
+
+     #saveTable td::before {
+      display: inline-block;
+      font-weight: bold;
+      margin-right: 5px;
+      
+  }
 
      /*  IE9 FIX   */
      .table-responsive-stack td {
