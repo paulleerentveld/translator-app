@@ -2,7 +2,7 @@
   "translations": [
     {
       "text": "Everyone should learn to code in JavaScript",
-      "translated": "To code in javascript,  everyone should learn",
+      "translated": "To code in javascript,  everyone should learnsdsd",
       "translation": "yoda",
       "id": 1
     },
@@ -17,12 +17,6 @@
       "translated": "G'day world!",
       "translation": "australian",
       "id": 15
-    },
-    {
-      "text": "Hello world my name is Hodor and I like to hold the door",
-      "translated": "Hodor hodor hodor hodor hodor hodor hodor hodor hodor hodor hodor hodor hodor hodorrrr",
-      "translation": "hodor",
-      "id": 17
     },
     {
       "text": "Hello Kim I am a minion",
