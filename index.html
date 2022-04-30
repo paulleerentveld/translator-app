@@ -31,8 +31,8 @@
                 <p class="hidden me-2" id="profile-p-login"></p><img src="" alt="profileimage" width="32px" height="32px" class="rounded-circle hidden" id="profile-img-login">
                 </a>
               <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-profile">Profile</a></li>
-                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item hidden" id="profile-btn" data-bs-toggle="modal" data-bs-target="#modal-profile">Profile</a></li>
+                <li><hr class="dropdown-divider hidden" id="profile-divider"></li>
                 <li class="dropdown-item hidden" id="btn-login" disabled="true" onclick="login()">Log in</li>
                 <li class="dropdown-item hidden" id="btn-logout" disabled="true" onclick="logout()">Log out</li>
               </ul>

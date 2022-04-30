@@ -53,7 +53,9 @@ const updateUI = async () => {
     document.getElementById("nav-saved-translations").classList.remove("hidden");
     document.getElementById("btn-logout").classList.remove("hidden");
     document.getElementById("btn-login").classList.add("hidden");
-
+    document.getElementById('profile-btn').classList.remove("hidden");
+    document.getElementById('profile-divider').classList.remove("hidden");
+    
     imgLogout.classList.add('hidden');
     pLogout.classList.add('hidden');
     imgLogin.classList.remove('hidden');
@@ -79,6 +81,8 @@ const updateUI = async () => {
     document.getElementById("nav-saved-translations").classList.add("hidden");
     document.getElementById("btn-logout").classList.add("hidden");
     document.getElementById("btn-login").classList.remove("hidden");
+    //document.getElementById('profile-btn').classList.add("hidden");
+    //document.getElementById('profile-divider').classList.add("hidden");
     imgLogout.classList.remove('hidden');
     pLogout.classList.remove('hidden');
     imgLogin.classList.add('hidden');
