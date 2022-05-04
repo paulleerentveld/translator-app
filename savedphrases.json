@@ -8,13 +8,13 @@
     },
     {
       "text": "I am going to go make a coffee",
-      "translated": "To make coffee going,  I amsss",
+      "translated": "To make coffee going,  I amsssdfdf",
       "translation": "yoda",
       "id": 2
     },
     {
-      "text": "hello world",
-      "translated": "G'day world!",
+      "text": "hello worlddsfsdf",
+      "translated": "G'day world!sdfsdf",
       "translation": "australian",
       "id": 15
     },
@@ -55,10 +55,32 @@
       "id": 23
     },
     {
-      "text": "This is a test",
-      "translated": "A test,  this is!",
+      "text": "This is a test1",
+      "translated": "A test,  this is!1",
       "translation": "yoda",
       "id": 24
+    }
+  ],
+  "favorites": [
+    {
+      "translationId": 19,
+      "email": "paul@veldnet.com.au",
+      "id": 1
+    },
+    {
+      "translationId": "2",
+      "email": "paul@veldnet.com.au",
+      "id": 2
+    },
+    {
+      "translationId": "20",
+      "email": "paul@veldnet.com.au",
+      "id": 3
+    },
+    {
+      "translationId": "23",
+      "email": "paul@veldnet.com.au",
+      "id": 4
     }
   ]
 }

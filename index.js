@@ -176,7 +176,7 @@ function saveLocally(text, translated, translation) {
           });
 }
 
-//Translation Form on Submit listener
+//Translation Form onSubmit Button listener, sends form data to translateData function
 const inputForm = document.getElementById("inputForm");
 inputForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -185,7 +185,7 @@ inputForm.addEventListener('submit', function(event) {
     translateData(type,text);
 })
 
-//Populate Table from local Data
+//Populate Table from local JSON file
 function getTableData() {
     fetch('http://localhost:3000/translations') 
         .then((response) => {
@@ -201,12 +201,11 @@ function getTableData() {
                 x += `<td>${element.text}</td>`
                 x += `<td>${element.translated}</td>`
                 x += `<td>${element.translation}</td>`
-                x += `<td><button class='btn btn-primary me-md-2 editBtn' onclick="editForm('${element.id}')" data-bs-toggle="modal" data-bs-target="#modal-edit">Edit</button><button class='btn btn-danger me-md-2 delBtn' onclick="delRow('${element.id}')">Delete</button></td>`
+                x += `<td><button class='btn btn-primary me-md-2 editBtn' onclick="editForm('${element.id}')" data-bs-toggle="modal" data-bs-target="#modal-edit" style="width: 20%;">Edit</button><button class='btn btn-danger me-md-2 delBtn' onclick="delRow('${element.id}')" style="width: 30%;">Delete</button><button class='btn btn-danger me-md-2 delBtn' onclick="likeBtn('${element.id}')" style="width: 20%;"><i class="fa fa-thumbs-up"></i></button></td>`
                 x += "</tr>"
             });
             tableBody.insertAdjacentHTML("beforeend", x);
             ResponsiveCellHeaders("saveTable");
-            
     })
     .catch(function(err) {
       console.log('Error: ' + err);
@@ -270,6 +269,24 @@ function editLocalData(form) {
         .then (alert(`The following data has been modified \r\n \r\n ID: ${dataId} \r\n Text: ${text} \r\n Translated Text: ${translated}`));
 } 
 
+
+//Like Btn
+async function likeBtn(id) {
+  const user = await auth0.getUser();
+  let email = user.email;
+  fetch(`http://localhost:3000/favorites/`, {
+        method: 'POST',
+        body: JSON.stringify({
+            "translationId": id,
+            "email": email
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => response.json())
+}
+
 //Delete row of local data
 function delRow(id) {
     fetch(`http://localhost:3000/translations/${id}`, {
@@ -286,18 +303,18 @@ function delRow(id) {
 //Stack Table
 function ResponsiveCellHeaders(elmID) {
   try {
-    var THarray = [];
-    var table = document.getElementById(elmID);
-    var ths = table.getElementsByTagName("th");
-    for (var i = 0; i < ths.length; i++) {
-      var headingText = ths[i].innerHTML;
+    const THarray = [];
+    const table = document.getElementById(elmID);
+    const ths = table.getElementsByTagName("th");
+    for (let i = 0; i < ths.length; i++) {
+      let headingText = ths[i].innerHTML;
       THarray.push(headingText);
     }
-    var styleElm = document.createElement("style"),
+    let styleElm = document.createElement("style"),
       styleSheet;
     document.head.appendChild(styleElm);
     styleSheet = styleElm.sheet;
-    for (var i = 0; i < THarray.length; i++) {
+    for (let i = 0; i < THarray.length; i++) {
       styleSheet.insertRule(
         "#" +
           elmID +
